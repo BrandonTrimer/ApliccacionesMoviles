@@ -1,0 +1,7 @@
+{
+  "name": "basenativa",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

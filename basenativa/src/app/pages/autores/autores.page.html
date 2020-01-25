@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mi Bilioteca</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-segment [(ngModel)]="selectedView">
+    <ion-segment-button value="autors">
+      <ion-label>Autores</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="books">
+      <ion-label>Libros</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="selectedView">
+    <div *ngSwitchCase="'autors'">
+      <ion-item>
+        <ion-label position="stacked">Cual es el Autor?</ion-label>
+        <ion-input [(ngModel)]="autor.nombre" placeholder="Nombre del autor"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Cual es el genero que escribe el Autor?</ion-label>
+        <ion-input [(ngModel)]="autor.genero" placeholder="Genero de preferencia"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Foto?</ion-label>
+        <ion-input [(ngModel)]="autor.img" placeholder="https://...."></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="addAutorP()">Agregar Autor</ion-button>
+
+
+      <ion-list>
+        <ion-item *ngFor="let aut of autores">
+          <ion-avatar slot="start">
+            <img [src]="aut.img">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ aut.nombre }}</h2>
+            <p>{{ aut.genero }}</p>
+            <ion-button (click)="updateAutorP(aut.id, aut.nombre, aut.genero, aut.img)">modificar</ion-button>
+            <ion-button (click)="deleteAutorP(aut.id)">eliminar</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'books'">
+      <ion-item>
+        <ion-label position="stacked">Libros</ion-label>
+        <ion-input [(ngModel)]="libro.titulo" placeholder="Titulo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Autor</ion-label>
+        <ion-select [(ngModel)]="libro.autorId">
+          <ion-select-option *ngFor="let aut of autores" [value]="aut.id">{{ aut.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="addLibroP()">Agregar Libro</ion-button>
+      
+      <ion-list>
+        <ion-item *ngFor="let book of libros | async">
+          <ion-label>
+            <h2>{{ book.titulo }}</h2>
+            <p>Autor: {{ book.autor }}</p>
+            <ion-button (click)="updateLibroP(book.id, book.titulo, book.autor)">modificar</ion-button>
+            <ion-button (click)="deleteLibroP(book.id)">eliminar</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+</ion-content>

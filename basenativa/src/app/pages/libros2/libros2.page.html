@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>libros2</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="stacked">Libros</ion-label>
+    <ion-input placeholder="Titulo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Autor</ion-label>
+    <ion-select>
+      <ion-select-option *ngFor="let aut of autores">/ion-select-option>
+    </ion-select>
+  </ion-item>
+
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>libros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+      <ion-item>
+        <ion-label position="stacked">Cual es el Autor?</ion-label>
+        <ion-input [(ngModel)]="newNombreA" placeholder="{{ autorNombre }}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Cual es el genero que escribe el Autor?</ion-label>
+        <ion-input [(ngModel)]="newGeneroA" placeholder="{{ autorGenero }}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Foto?</ion-label>
+        <ion-input [(ngModel)]="newImgA" placeholder="{{ autorImg }}"></ion-input>
+      </ion-item>
+      <br>
+      <ion-button expand="block" (click)="updateAutorP()">Modificar Autor</ion-button>
+
+      
+
+</ion-content>
